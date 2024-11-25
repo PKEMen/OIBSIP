@@ -10,9 +10,10 @@ import java.util.Scanner;
 
 
 /**
- * This class requires a user to login to the system. Once the user's details 
- * have been verified, the user is allows to access, create, edit or cancel
- * reservations made.
+ * This program implements a Number Guessing Game. Users can select difficulty 
+ * levels and try to guess a randomly generated number within a limited number 
+ * of attempts. Scores are saved and loaded from a file to track progress 
+ * across sessions.
  *
  * @author PK Ewusie-Mensah
  * @version 1.0  2024-Nov-25
@@ -43,7 +44,7 @@ public class NumberGuessingGame{
      * Main method to run the online reservation system.
      *
      * @param args command-line arguments
-    * @throws java.awt.AWTException
+     * @throws AWTException if a problem occurs while clearing the console
      */
    
    public static void main(String[] args) throws AWTException {
@@ -127,7 +128,7 @@ public class NumberGuessingGame{
    }
    
    /**
-     * Displays the login menu.
+     * Displays the game menu.
      */
    private static void displayMenu(){
       System.out.println();
@@ -210,7 +211,15 @@ public class NumberGuessingGame{
         return true;
     }
    
-    
+    /**
+     * Executes the number guessing game for the given difficulty level.
+     *
+     * @param low the lowest possible number
+     * @param high the highest possible number
+     * @param numGuesses the maximum number of guesses allowed
+     * @param input the Scanner object for user input
+     * @return a string indicating whether the user wants to play another round
+     */
     public static String numberGame(int low, int high, int numGuesses, 
           Scanner input){
       Random randIn = new Random();
@@ -273,6 +282,11 @@ public class NumberGuessingGame{
       }
    }
 
+    /**
+     * Loads the user's score from a file.
+     *
+     * @param filename the file containing the score
+     */
    private static void loadScores(String filename) {
        File loadingFile = new File(filename);
        int score = 0;
@@ -290,6 +304,11 @@ public class NumberGuessingGame{
        }
    }
 
+   /**
+     * Saves the user's current score to a file.
+     *
+     * @param filename the file to save the score to
+     */
    private static void saveScores(String filename) {
        File saveFile = new File(filename);
        try{
